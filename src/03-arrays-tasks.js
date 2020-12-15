@@ -646,7 +646,6 @@ function getElementByIndexes(arr, indexes) {
 function swapHeadAndTail(arr) {
   const averageLength = Math.floor(arr.length / 2);
   const averageElement = Math.ceil(arr.length / 2);
-  console.log(averageElement);
   const arr1 = [];
   arr1.push(arr.slice(-averageLength));
   arr1.push(arr.slice(0, averageLength));
