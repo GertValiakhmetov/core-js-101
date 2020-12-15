@@ -601,7 +601,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-  return arr.map((el) => childrenSelector(el).flat());
+  return arr.map((el) => childrenSelector(el)).flat();
 }
 
 
@@ -617,8 +617,11 @@ function selectMany(arr, childrenSelector) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  if (indexes.length === 1) return arr[indexes[0]];
+  if (indexes.length === 2) return arr[indexes[0]][indexes[1]];
+  if (indexes.length === 3) return arr[indexes[0]][indexes[1]][indexes[2]];
+  return true;
 }
 
 
@@ -640,8 +643,17 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const averageLength = Math.floor(arr.length / 2);
+  const averageElement = Math.ceil(arr.length / 2);
+  console.log(averageElement);
+  const arr1 = [];
+  arr1.push(arr.slice(-averageLength));
+  arr1.push(arr.slice(0, averageLength));
+  if (arr.length % 2 !== 0 && arr.length !== 1) {
+    arr1.splice(arr1.length / 2, 0, arr[averageElement - 1]);
+  }
+  return arr1.flat();
 }
 
 
